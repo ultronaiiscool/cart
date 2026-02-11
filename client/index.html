@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kart Racer - 3D Multiplayer Racing</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #111;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    #game-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    #game-canvas canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    #game-ui {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    #game-ui > * {
+      pointer-events: none;
+    }
+    #loading {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: #aaccee;
+      font-size: 18px;
+      z-index: 1000;
+    }
+    .loading-bar {
+      width: 200px;
+      height: 4px;
+      background: rgba(255,255,255,0.1);
+      margin-top: 12px;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loading-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #4466cc, #ffcc00);
+      transition: width 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-canvas"></div>
+  <div id="game-ui"></div>
+  <div id="loading">
+    Loading Kart Racer...
+    <div class="loading-bar"><div class="loading-fill" id="loading-fill"></div></div>
+  </div>
+
+  <!-- Three.js (WebGL 1 compatible) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Shared modules -->
+  <script src="../shared/constants.js"></script>
+  <script src="../shared/utils.js"></script>
+
+  <!-- Game modules (order matters) -->
+  <script>
+    // Loading progress
+    const totalScripts = 11;
+    let loadedScripts = 0;
+    function updateLoading() {
+      loadedScripts++;
+      const fill = document.getElementById('loading-fill');
+      if (fill) fill.style.width = (loadedScripts / totalScripts * 100) + '%';
+      if (loadedScripts >= totalScripts) {
+        const el = document.getElementById('loading');
+        if (el) el.style.display = 'none';
+      }
+    }
+  </script>
+  <script src="src/renderer.js" onload="updateLoading()"></script>
+  <script src="src/lighting.js" onload="updateLoading()"></script>
+  <script src="src/effects.js" onload="updateLoading()"></script>
+  <script src="src/riders.js" onload="updateLoading()"></script>
+  <script src="src/kart.js" onload="updateLoading()"></script>
+  <script src="src/physics.js" onload="updateLoading()"></script>
+  <script src="src/ai.js" onload="updateLoading()"></script>
+  <script src="src/powerups.js" onload="updateLoading()"></script>
+  <script src="src/missiles.js" onload="updateLoading()"></script>
+  <script src="src/network.js" onload="updateLoading()"></script>
+  <script src="src/ui.js" onload="updateLoading()"></script>
+  <script src="src/game.js" onload="updateLoading()"></script>
+
+  <!-- Server URL config (override for production) -->
+  <script>
+    // Set your Render deployment URL here
+    // window.GAME_SERVER_URL = 'wss://your-server.onrender.com';
+  </script>
+</body>
+</html>
