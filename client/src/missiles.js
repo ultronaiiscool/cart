@@ -5,14 +5,16 @@ class MissileVisuals {
     this.effects = effects;
     this.missiles = new Map(); // id -> { mesh, state }
 
-    // Shared geometry
-    this.missileGeo = this._createMissileGeometry();
+    // Materials must be created before geometry that references them
     this.missileMat = new THREE.MeshLambertMaterial({ color: 0xff2222 });
     this.flameMat = new THREE.MeshBasicMaterial({
       color: 0xff8800,
       transparent: true,
       opacity: 0.8,
     });
+
+    // Shared geometry template
+    this.missileGeo = this._createMissileGeometry();
   }
 
   _createMissileGeometry() {

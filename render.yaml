@@ -1,12 +1,12 @@
 # Render deployment configuration for WebSocket server
+# rootDir is project root so server can access ../shared/
 
 services:
   - type: web
     name: kart-racing-server
     runtime: node
-    rootDir: server
-    buildCommand: npm install
-    startCommand: node index.js
+    buildCommand: cd server && npm install
+    startCommand: cd server && node index.js
     envVars:
       - key: NODE_ENV
         value: production

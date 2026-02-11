@@ -31,9 +31,6 @@
       height: 100%;
       pointer-events: none;
     }
-    #game-ui > * {
-      pointer-events: none;
-    }
     #loading {
       position: absolute;
       top: 50%; left: 50%;
@@ -69,14 +66,13 @@
   <!-- Three.js (WebGL 1 compatible) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-  <!-- Shared modules -->
-  <script src="../shared/constants.js"></script>
-  <script src="../shared/utils.js"></script>
+  <!-- Shared modules (path works both locally and via Netlify build) -->
+  <script src="shared/constants.js"></script>
+  <script src="shared/utils.js"></script>
 
   <!-- Game modules (order matters) -->
   <script>
-    // Loading progress
-    const totalScripts = 11;
+    const totalScripts = 12;
     let loadedScripts = 0;
     function updateLoading() {
       loadedScripts++;
@@ -103,8 +99,8 @@
 
   <!-- Server URL config (override for production) -->
   <script>
-    // Set your Render deployment URL here
-    // window.GAME_SERVER_URL = 'wss://your-server.onrender.com';
+    // Set your Render deployment URL here:
+    // window.GAME_SERVER_URL = 'wss://your-kart-server.onrender.com';
   </script>
 </body>
 </html>

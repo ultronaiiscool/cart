@@ -657,8 +657,14 @@ class Game {
   }
 }
 
-// Boot
-window.addEventListener('DOMContentLoaded', () => {
+// Boot - handle both pre and post DOMContentLoaded
+function bootGame() {
   const game = new Game();
   game.init();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootGame);
+} else {
+  bootGame();
+}

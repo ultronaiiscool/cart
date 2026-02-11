@@ -39,8 +39,7 @@ class PowerUpVisuals {
     );
     group.add(outer);
 
-    // Question mark
-    const qGeo = new THREE.TextGeometry ? null : null; // Skip text geo, use a simple shape
+    // Question mark (simple box shape)
     const qMark = new THREE.Mesh(
       new THREE.BoxGeometry(0.3, 0.5, 0.05),
       new THREE.MeshBasicMaterial({ color: 0xffffff })
